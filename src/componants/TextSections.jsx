@@ -3,12 +3,13 @@ import {textPositions} from "./data/textPositions";
 import {fadeOnBeforeCompileFlat} from './utils/faedMaterial'
 import {fadeOnBeforeCompile} from './utils/faedMaterial'
 
-function TextSection({ position, title, subtitle,...props }) {
+function TextSection({ position, title, subtitle, rotation=[0, 0, 0], ...props }) {
     return (
         <>
             <Text
                 position={position}
                 fontSize={0.52}
+                rotation={rotation}
                 maxWidth={2.5}
                 lineHeight={1.5}
                 anchorX="left"
@@ -22,6 +23,8 @@ function TextSection({ position, title, subtitle,...props }) {
         </Text>
         <Text
             position={position}
+              rotation={rotation}
+
             fontSize={0.2}
             anchorX="left"
             anchorY="top"
@@ -43,6 +46,7 @@ export default function TextSections() {
         <TextSection
           key={index}
           position={text.position}
+          rotation={text.rotation}
           title={text.title}
           subtitle={text.subtitle}
         />

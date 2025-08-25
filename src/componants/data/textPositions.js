@@ -25,9 +25,10 @@ export const textPositions = [
     cameraRailDist: -1.8
   },
   {
-    position: generateTextPosition(6, { x: 1, y: 2, z: 3 }), // During descent
+    position: generateTextPosition(6, { x: 0, y: 2, z: 3 }), // During descent
     title: 'Luxury Comfort',
     subtitle: 'Experience unparalleled comfort in our spacious cabins with premium amenities',
+    rotation: [0, -Math.PI / 4, 0],
     cameraRailDist: 2.5
   },
   {

@@ -1,4 +1,4 @@
-import {   PerspectiveCamera,  useScroll } from "@react-three/drei";
+import {   Float, PerspectiveCamera,  useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useRef, useMemo, useLayoutEffect, useEffect } from "react";
@@ -10,6 +10,7 @@ import { textPositions } from "./data/textPositions";
 import { curvePoints, FLIGHT_CONFIG } from "./data/curveConfig"; // Import from config
 import { cloudPositions } from "./data/cloudPositions"; // Import cloud positions
 import gsap from "gsap";
+import {fadeOnBeforeCompile} from './utils/faedMaterial'
 
 export default function Experience({start, end, setEnd}) {
   // Use imported curve points instead of hardcoded ones
@@ -137,7 +138,7 @@ export default function Experience({start, end, setEnd}) {
     tangent.applyAxisAngle(new THREE.Vector3(0, 1, 0), -nonLerpLookAt.rotation.y);
     let angle = Math.atan2(tangent.x, -tangent.z);
     let angleDegrees = (angle * 180) / Math.PI;
-    angleDegrees *= 5.8; // More dramatic banking
+    angleDegrees *= 2.8; // More dramatic banking
 
     // Limit plane banking angle
     angleDegrees = Math.max(Math.min(angleDegrees, FLIGHT_CONFIG.AIRPLANE_MAX_ANGLE), -FLIGHT_CONFIG.AIRPLANE_MAX_ANGLE);
@@ -160,9 +161,11 @@ export default function Experience({start, end, setEnd}) {
         <group ref={cameraRailRef}>
           <PerspectiveCamera position={[0, 1, 6]} makeDefault /> {/* Adjusted camera position */}
         </group>
-        <group ref={planeRef} position={[0, 0, 10]}>
+       <Float floatIntensity={1} rotationIntensity={0.0} speed={5} >
+         <group ref={planeRef} position={[0, 0, 10]}>
           <Plane />
         </group>
+       </Float>
       </group>
 
      { start && (cloudPositions.map((position, index) => (
@@ -171,7 +174,7 @@ export default function Experience({start, end, setEnd}) {
 
      {start && <mesh position-y={-1.5}> {/* Adjusted ground level */}
         <extrudeGeometry args={[shape, {extrudePath: curve, steps: FLIGHT_CONFIG.NB_LINE_POINTS, bevelEnabled: false}]}/>
-        <meshStandardMaterial transparent={true} opacity={0.3} color={"#87CEEB"} /> {/* Sky blue color */}
+        <meshStandardMaterial transparent={true} opacity={0.3} color={"#87CEEB"} onBeforeCompile={fadeOnBeforeCompile} /> {/* Sky blue color */}
       </mesh>}
       <TextSections />
       <ambientLight intensity={0.6} /> {/* Brighter ambient light */}
