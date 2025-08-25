@@ -1,4 +1,4 @@
-import { CatmullRomLine, Line, OrbitControls, PerspectiveCamera, Text, useScroll } from "@react-three/drei";
+import {   PerspectiveCamera,  useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useRef, useMemo, useLayoutEffect, useEffect } from "react";
@@ -58,9 +58,9 @@ export default function Experience({start, end, setEnd}) {
     return shape;
   }, []);
 
-  const cameraRailRef = useRef<THREE.Group>(null!);
-  const planeRef = useRef<THREE.Mesh>(null!);
-  const cameraGroupRef = useRef<THREE.Group>(null!);
+  const cameraRailRef = useRef();
+  const planeRef = useRef();
+  const cameraGroupRef = useRef();
   const scroll = useScroll();
   const lastScroll = useRef(0);
    useEffect(() => {

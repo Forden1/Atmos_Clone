@@ -3,7 +3,7 @@ import {textPositions} from "./data/textPositions";
 import {fadeOnBeforeCompileFlat} from './utils/faedMaterial'
 import {fadeOnBeforeCompile} from './utils/faedMaterial'
 
-function TextSection({ position, title, subtitle,...props }: { position: [number, number, number], title: string, subtitle: string }) {
+function TextSection({ position, title, subtitle,...props }) {
     return (
         <>
             <Text

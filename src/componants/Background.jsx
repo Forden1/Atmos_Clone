@@ -1,7 +1,6 @@
 import { Environment, shaderMaterial } from "@react-three/drei"
 import * as THREE from "three"
 import { extend, useFrame } from "@react-three/fiber"
-import { useControls } from "leva"
 import { useRef } from "react"
 
 const BackgroundMaterial  = shaderMaterial(

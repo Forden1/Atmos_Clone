@@ -3,11 +3,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Canvas } from '@react-three/fiber'
-import WavySphere from './componants/Experience'
-import Experience from './componants/Experience'
-import Background from './componants/Background'
+import Experience from './componants/Experience.jsx'
 import { Loader, OrbitControls, Scroll, ScrollControls } from '@react-three/drei'
-import Interface from './componants/Interface'
+import Interface from './componants/Interface.jsx'
 import { EffectComposer, Noise } from '@react-three/postprocessing'
 
 function App() {
